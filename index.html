@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bean Town Cafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#fff;color:#333;}
+
+.hero{
+  height:100vh;
+  background:url('https://i.ibb.co/YT20RwQY/35631d5a3fb3cc852a1580ced9d5e4e5.jpg') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:20px;
+}
+.hero h1{font-size:40px;margin-bottom:10px;}
+.hero p{font-size:18px;margin-bottom:20px;}
+.btn{
+  padding:12px 25px;
+  background:#ff6b00;
+  color:white;
+  border:none;
+  cursor:pointer;
+  border-radius:5px;
+  font-size:16px;
+}
+
+.products{
+  padding:40px 20px;
+}
+.products h2{text-align:center;margin-bottom:20px;}
+
+.carousel{
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+}
+.product{
+  min-width:200px;
+  background:#f9f9f9;
+  border-radius:10px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+.product img{
+  width:100%;
+  border-radius:10px;
+}
+.product h3{font-size:16px;margin:10px 0;}
+.product button{
+  padding:8px 15px;
+  background:#ff6b00;
+  border:none;
+  color:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.cart-icon{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#ff6b00;
+  color:white;
+  padding:12px;
+  border-radius:50%;
+  cursor:pointer;
+}
+.cart-count{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  background:red;
+  color:white;
+  border-radius:50%;
+  padding:3px 6px;
+  font-size:12px;
+}
+
+.cart-drawer{
+  position:fixed;
+  right:-400px;
+  top:0;
+  width:350px;
+  height:100%;
+  background:white;
+  box-shadow:-5px 0 15px rgba(0,0,0,0.2);
+  padding:20px;
+  transition:0.3s;
+  overflow-y:auto;
+}
+.cart-drawer.active{right:0;}
+
+.cart-item{margin-bottom:10px;}
+
+input,textarea{
+  width:100%;
+  padding:8px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+.send-btn{
+  background:green;
+  color:white;
+  padding:10px;
+  border:none;
+  width:100%;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  padding:15px;
+  border-radius:50%;
+}
+.whatsapp a{color:white;text-decoration:none;font-size:20px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>Bean Town Cafe</h1>
+    <p>Fresh Finds, Best Prices</p>
+    <button class="btn" onclick="document.getElementById('products').scrollIntoView()">Shop Now</button>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+<h2>Our Products</h2>
+
+<div class="carousel">
+
+<div class="product">
+<img src="https://i.ibb.co/359B6g6K/0b5eb439a0fe2c71aa7b427d3402e1ea.jpg">
+<h3>Coffee Special</h3>
+<button onclick="addToCart('Coffee Special')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/dTXXdLN/26e368041c4e38378e2639b6ea12b562.jpg">
+<h3>Latte</h3>
+<button onclick="addToCart('Latte')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/rfxK27Wh/380850749a227ead09fc94cb2801bd28.jpg">
+<h3>Cold Coffee</h3>
+<button onclick="addToCart('Cold Coffee')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/mrdjCFMs/9771d8ff54d37ab54e7a890215927ce1.jpg">
+<h3>Cappuccino</h3>
+<button onclick="addToCart('Cappuccino')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/hxdwrtkM/bf85c81caac2baf6fd48b26e06a67a4b.jpg">
+<h3>Espresso</h3>
+<button onclick="addToCart('Espresso')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/4RpWRQBW/9b6d1615e5ee1a852e17566cfdb34130.jpg">
+<h3>Mocha</h3>
+<button onclick="addToCart('Mocha')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/fGt5vL3w/a85392609f9ce282aaeac46586bb3273.jpg">
+<h3>Americano</h3>
+<button onclick="addToCart('Americano')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/8LgSsMG5/dd29321db26bb2c1ad3884ec207194b3.jpg">
+<h3>Special Brew</h3>
+<button onclick="addToCart('Special Brew')">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="https://i.ibb.co/WvjtYSZg/b0ce3e85839901d25ec5247690692950.jpg">
+<h3>Signature Blend</h3>
+<button onclick="addToCart('Signature Blend')">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<!-- CART ICON -->
+<div class="cart-icon" onclick="toggleCart()">
+🛒
+<span class="cart-count" id="cart-count">0</span>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-drawer" id="cart">
+<h2>Your Cart</h2>
+<div id="cart-items"></div>
+
+<h3>Customer Details</h3>
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="text" id="phone" placeholder="Phone Number" required>
+
+<button class="send-btn" onclick="sendOrder()">Send Order</button>
+</div>
+
+<!-- WhatsApp -->
+<div class="whatsapp">
+<a href="https://wa.me/0000000000" target="_blank">💬</a>
+</div>
+
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+let cart = [];
+
+function addToCart(item){
+cart.push(item);
+document.getElementById("cart-count").innerText = cart.length;
+renderCart();
+}
+
+function renderCart(){
+let cartItems = document.getElementById("cart-items");
+cartItems.innerHTML="";
+cart.forEach((item,i)=>{
+cartItems.innerHTML += `<div class="cart-item">${item}</div>`;
+});
+}
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
+}
+
+function sendOrder(){
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+
+if(!name || !phone || cart.length==0){
+alert("Fill all details and add items");
+return;
+}
+
+let templateParams = {
+customer_name: name,
+customer_phone: phone,
+order_items: cart.join(", ")
+};
+
+emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",templateParams)
+.then(function(response){
+alert("Order Sent Successfully!");
+cart=[];
+document.getElementById("cart-count").innerText=0;
+renderCart();
+toggleCart();
+}, function(error){
+alert("Failed to send order");
+});
+}
+</script>
+
+</body>
+</html>
